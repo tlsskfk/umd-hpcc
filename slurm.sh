@@ -79,9 +79,9 @@ chmod 777 ../fmriprep/sub-ntr$subject.html
 chmod 777 -R ../freesurfer/sub-ntr$subject
 chmod 777 -R ../freesurfer/sub-ntr$subject
 
-echo "scp ../fmriprep/sub-ntr$subject.html skfk@neurodev3.umd.edu:/data/neurodev/NTR/fmriprep/fmriprep/archive" >> $HOME/slurm/scp.sh
+echo "scp ../fmriprep/sub-ntr$subject.html skfk@neurodev3.umd.edu:/data/neurodev/NTR/fmriprep/fmriprep" >> $HOME/slurm/scp.sh
 echo "scp -r ../freesurfer/sub-ntr$subject skfk@neurodev3.umd.edu:/data/neurodev/NTR/fmriprep/freesurfer" >> $HOME/slurm/scp.sh
-echo "scp -r ../fmriprep/sub-ntr$subject skfk@neurodev3.umd.edu:/data/neurodev/NTR/fmriprep/fmriprep/archive" >> $HOME/slurm/scp.sh
+echo "scp -r ../fmriprep/sub-ntr$subject skfk@neurodev3.umd.edu:/data/neurodev/NTR/fmriprep/fmriprep" >> $HOME/slurm/scp.sh
 
 EOF
 )
