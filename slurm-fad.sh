@@ -4,7 +4,7 @@ export HOME="/scratch/zt1/project/jpurcel8-prj/shared"
 export SOFTWARE_DIR="$HOME/fmriprep/software"
 export BIDS_DIR="$HOME/bids"
 export OUTPUT_DIR="$HOME/fmriprep/"
-export WORKING_DIR="/tmp/working"
+export WORKING_DIR="/tmp/fmriprep/working"
 export LOG_DIR="$HOME/fmriprep/log"
 
 export SINGULARITYENV_TEMPLATEFLOW_USE_PYBIDS=true
@@ -42,6 +42,8 @@ run_singularity() {
   --omp-nthreads 8 \
   --mem 64G \
   --skip_bids_validation \
+  --bids-filter-file $HOME/fadconfig.json \
+  --skull-strip-t1w skip \
   --fs-license-file /tmp/$1/fmriprep/software/license.txt >> "$LOG_DIR/$1.log"
 
   echo "$(date '+%Y-%m-%d %H:%M:%S') - Completed Processing of subject $1" >> "$LOG_DIR/$1.log"
@@ -52,7 +54,7 @@ for subject in "$@"; do
   command_string=$(cat <<EOF
 #!/bin/bash
 #SBATCH -n 1
-#SBATCH -t 1-0
+#SBATCH -t 5-0
 #SBATCH -c 16
 #SBATCH --mem-per-cpu=4096
 #SBATCH --oversubscribe
