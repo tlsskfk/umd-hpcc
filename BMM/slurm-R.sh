@@ -20,7 +20,7 @@ command_string=$(cat <<EOF
 #SBATCH -n 1
 #SBATCH -t 3-0
 #SBATCH -c 16
-#SBATCH --mem-per-cpu=2048
+#SBATCH --mem-per-cpu=4096
 #SBATCH --oversubscribe
 
 export SLURM_EXPORT_ENV=ALL
