@@ -6,7 +6,7 @@ curl https://cran.r-project.org/src/contrib/QuickJSR_1.1.3.tar.gz --output Quick
 curl https://cran.r-project.org/src/contrib/StanHeaders_2.32.6.tar.gz --output StanHeaders_2.32.6.tar.gz
 curl https://cran.r-project.org/src/contrib/colourpicker_1.3.0.tar.gz --output colourpicker_1.3.0.tar.gz
 curl https://cran.r-project.org/src/contrib/threejs_0.3.3.tar.gz --output threejs_0.3.3.tar.gz
-curl https://cran.r-project.org/src/contrib/dygraphs_1.1.1.6.tar.gz --output dygraphs_1.1.6.tar.gz
+curl https://cran.r-project.org/src/contrib/dygraphs_1.1.1.6.tar.gz --output dygraphs_1.1.1.6.tar.gz
 curl https://cran.r-project.org/src/contrib/shinythemes_1.2.0.tar.gz --output shinythemes_1.2.0.tar.gz
 curl https://cran.r-project.org/src/contrib/Brobdingnag_1.2-9.tar.gz --output Brobdingnag_1.2-9.tar.gz
 curl https://cran.r-project.org/src/contrib/RcppEigen_0.3.4.0.0.tar.gz --output RcppEigen_0.3.4.0.0.tar.gz
@@ -20,4 +20,6 @@ curl https://cran.r-project.org/src/contrib/bridgesampling_1.1-2.tar.gz --output
 curl https://cran.r-project.org/src/contrib/nleqslv_3.3.5.tar.gz --output nleqslv_3.3.5.tar.gz
 curl https://cran.r-project.org/src/contrib/brms_2.20.4.tar.gz --output brms_2.20.4.tar.gz
 curl https://cran.r-project.org/src/contrib/RcppEigen_0.3.4.0.0.tar.gz --output RcppEigen_0.3.4.0.0.tar.gz
+curl https://cran.r-project.org/src/contrib/RcppParallel_5.1.7.tar.gz --output RcppParallel_5.1.7.tar.gz
+curl https://cran.r-project.org/src/contrib/BH_1.84.0-0.tar.gz --output BH_1.84.0-0.tar.gz
 cd ../
