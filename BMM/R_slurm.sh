@@ -5,7 +5,7 @@ WDIR="/scratch/zt1/project/jpurcel8-prj/shared/slurm/BMM"
 R_SCRIPT="bayesian_trail_b.R"
 SLURM_R_SCRIPT="SLURM_$R_SCRIPT"
 
-hash=$(openssl rand -hex 8)
+hash=$(openssl rand -hex 3)
 tmp_dir="jpurcel8-$hash"
 
 # Comment the following line out if you plan on running a different script than the one specified above (R_SCRIPT)
@@ -48,9 +48,10 @@ Rscript --save ./$SLURM_R_SCRIPT
 
 rm -R packages
 
+# mkdir -p $R_output_dir/output-$hash
 cp -R /tmp/$tmp_dir/* $R_output_dir/output-$hash
 date >> $WDIR/scp.sh
-echo "scp ../output-$hash/* $SCP_OUTPUT_SERVER" >> $WDIR/scp.sh
+# echo "scp ../output-$hash/* $SCP_OUTPUT_SERVER" >> $WDIR/scp.sh
 date
 EOF
 )

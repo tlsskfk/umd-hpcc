@@ -19,4 +19,5 @@ curl https://cran.r-project.org/src/contrib/shinystan_2.6.0.tar.gz --output shin
 curl https://cran.r-project.org/src/contrib/bridgesampling_1.1-2.tar.gz --output bridgesampling_1.1-2.tar.gz
 curl https://cran.r-project.org/src/contrib/nleqslv_3.3.5.tar.gz --output nleqslv_3.3.5.tar.gz
 curl https://cran.r-project.org/src/contrib/brms_2.20.4.tar.gz --output brms_2.20.4.tar.gz
+curl https://cran.r-project.org/src/contrib/RcppEigen_0.3.4.0.0.tar.gz --output RcppEigen_0.3.4.0.0.tar.gz
 cd ../
