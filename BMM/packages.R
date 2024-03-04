@@ -15,6 +15,7 @@ install.packages("packages/bridgesampling_1.1.2.tar.gz", lib = ".", repos = NULL
 install.packages("packages/nleqslv_3.3.5.tar.gz", lib = ".", repos = NULL, type = "source")
 install.packages('packages/brms_2.20.4.tar.gz', lib = ".", repos = NULL, type = "source")
 library(loo)
+library(inline)
 library(QuickJSR)
 library(StanHeaders)
 library(colourpicker)
