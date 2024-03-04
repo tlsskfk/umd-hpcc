@@ -12,7 +12,8 @@ tmp_dir="jpurcel8-$hash"
 # read -p "Which R script would you like to run? " R_SCRIPT
 
 # Download the necessary packages before the job runs
-source ./packages.sh
+# You can comment this out after the first time you run the script
+# source ./packages.sh
 
 command_string=$(cat <<EOF
 #!/bin/bash
@@ -35,7 +36,6 @@ cd $WDIR
 
 # Make a temporary directory for the job
 mkdir -p /tmp/$tmp_dir
-mkdir -p /tmp/$tmp_dir/packages
 cp -R $WDIR/* /tmp/$tmp_dir
 cd /tmp/$tmp_dir
 
