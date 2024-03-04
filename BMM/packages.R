@@ -30,8 +30,3 @@ library(shinystan)
 library(bridgesampling)
 library(nleqslv)
 
-library(tidyverse)
-library(brms)
-library(pracma)
-
-
