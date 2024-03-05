@@ -11,12 +11,16 @@ This repository is located in the folder `slurm`, along with the scripts for sen
 Also at this level, are folders `freesurfer` (where the freesurfer outputs go) and `fmriprep`, where all the other folders are located.
 
 
-	/scratch/zt1/project/$PROJECTNAME/shared --- slurm    --- YOU ARE HERE
-						 |-- freesurfer --- freesurfer outputs.
-						 |-- fmriprep --- software --- license.txt and fmriprep.simg file
-							      |-- logs --- log files, check this location for debugging
-							      |-- log
-							      |-- any subject outputs.
+	/scratch/zt1/project/$PROJECTNAME/shared
+	├─ fmriprep/
+	│  ├─ software/
+	│  ├─ log/
+	│  ├─ subject1-output/
+	├─ slurm/
+	│  ├─ YOU ARE HERE
+	│  ├─ slurm-ntr.sh
+	├─ freesurfer/
+
 
 ## Downloading fmriprep
 singularity build /path/to/fmriprep-20.2.7.simg docker://nipreps/fmriprep:20.2.7
