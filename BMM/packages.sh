@@ -22,4 +22,6 @@ curl https://cran.r-project.org/src/contrib/brms_2.20.4.tar.gz --output brms_2.2
 curl https://cran.r-project.org/src/contrib/RcppEigen_0.3.4.0.0.tar.gz --output RcppEigen_0.3.4.0.0.tar.gz
 curl https://cran.r-project.org/src/contrib/RcppParallel_5.1.7.tar.gz --output RcppParallel_5.1.7.tar.gz
 curl https://cran.r-project.org/src/contrib/BH_1.84.0-0.tar.gz --output BH_1.84.0-0.tar.gz
+curl https://cran.r-project.org/src/contrib/rlang_1.1.3.tar.gz --output rlang_1.1.3.tar.gz
+curl https://cran.r-project.org/src/contrib/scales_1.3.0.tar.gz --output scales_1.3.0.tar.gz
 cd ../

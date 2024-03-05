@@ -1,8 +1,27 @@
 # umd-hpcc
 Repository for methods and scripts designed for University of Maryland's HPCC Zaratan Slurm Scheduling System
 
+## Directory Structure
+We will be using `/scratch/zt1/project/$PROJECTNAME/shared` as our main working directory.
+This repository is located in the folder `slurm`, along with the scripts for sending jobs.
+Also at this level, are folders `freesurfer` (where the freesurfer outputs go) and `fmriprep`, where all the other folders are located.
 
-## Getting Started
+
+	/scratch/zt1/project/$PROJECTNAME/shared --- slurm    --- YOU ARE HERE
+						 |-- freesurfer --- freesurfer outputs.
+						 |-- fmriprep --- software --- license.txt and fmriprep.simg file
+							      |-- logs --- log files, check this location for debugging
+							      |-- log
+							      |-- any subject outputs.
+
+## Downloading fmriprep
+singularity build /path/to/fmriprep-20.2.7.simg docker://nipreps/fmriprep:20.2.7
+If you are copying our directory structure, you should set the path of download to
+`/scratch/zt1/project/$PROJECTNAME/shared/fmriprep/software`
+
+
+
+## Understanding Zaratan Peculiarities
 You should have a basic understanding of the linux filesystem and shell scripts (environment variables, chmod, etc).
 There are 4 directories to be aware of:
 1) Home - `/home/$username`
@@ -23,21 +42,18 @@ The Job space can be any temporary workload for the job.
 The Scratch Space is the only space available to the jobs for read access, so if you need files or executables, you should reference this space or copy the file to `/tmp` situationally.
 Any job nodes will also not have access to the internet while running the job, so make sure to have any files needed accessible in `/tmp` or the shared scratch space.
 
-### Variables
-Most variables are set at the top level of the file so that you can adjust it as per your project.
-#### Explanations: 
-project_name: Recommended to be a short acronym (ex: ntr, fad, hgp).  This is not referring to the name of the folder in the scratch space of the project.
 
 
 ## Home Directory
 
 The home directory here is just to localize our filesystem with /fmriprep in a readable format.  The extraneous env statements help pull the variable from one abstraction to the other.
 
-#### WARNING!!!
-For some reason, the hpcc environment will force $HOME to be /home/username, even if you attempt to set it.  Therefore, you must have the templateflow home variable, as the unless you want the templateflow home directory to be /home/username (Not recommended, as you only have 1 gb of space here).
+## WARNING!!!
+1) Do not use /home/$user for your jobs.  This space has 1gb and you will run out.
+2) For some reason, the hpcc environment will force $HOME to be /home/username, even if you attempt to set it.  Therefore, you must have the templateflow home variable, as the unless you want the templateflow home directory to be /home/username (Not recommended, as you only have 1 gb of space here).
 
 
-#### Working Directory
-
+#### Working Directory for jobs
+When starting a job, we copy all the relevant files to `/tmp`.
 A temporary folder will be used for the working directory during each job, at `/tmp`
 This directory is local to the nodes that are running the jobs.  You may also use `/scratch/zt1/project/$project_name/shared`, but you may run into storage issues.
