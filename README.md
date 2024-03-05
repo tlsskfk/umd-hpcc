@@ -1,6 +1,10 @@
 # umd-hpcc
 Repository for methods and scripts designed for University of Maryland's HPCC Zaratan Slurm Scheduling System
 
+# Bayesian model analysis using R on Zaratan
+This section is not working as of yet.
+
+# Fmriprep jobs on Zaratan
 ## Directory Structure
 We will be using `/scratch/zt1/project/$PROJECTNAME/shared` as our main working directory.
 This repository is located in the folder `slurm`, along with the scripts for sending jobs.
