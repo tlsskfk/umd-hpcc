@@ -4,7 +4,7 @@ export HOME="/scratch/zt1/project/jpurcel8-prj/shared"
 export SOFTWARE_DIR="$HOME/fmriprep/software"
 export BIDS_DIR="$HOME/bids"
 export OUTPUT_DIR="$HOME/fmriprep/"
-export WORKING_DIR="/tmp/fmriprep/working"
+export WORKING_DIR="/tmp/fmriprep"
 export LOG_DIR="$HOME/fmriprep/log"
 export SINGULARITYENV_TEMPLATEFLOW_USE_PYBIDS=true
 export SLURM_EXPORT_ENV=ALL
@@ -66,19 +66,13 @@ cd $HOME
 
 mkdir -p /tmp/ntr$subject/fmriprep
 mkdir -p /tmp/ntr$subject/.cache
-chmod 700 /tmp/ntr$subject/fmriprep
-chmod 700 /tmp/ntr$subject/.cache
-
+mkdir -p $WORKING_DIR
 cp -r ./fmriprep/software /tmp/ntr$subject/fmriprep
 cp -r ./.cache /tmp/ntr$subject
 
 echo "Running Fmriprep processing for ntr$subject..."
 $(declare -f run_singularity)
 run_singularity "ntr$subject"
-
-chmod 777 ../fmriprep/sub-ntr$subject.html
-chmod 777 -R ../freesurfer/sub-ntr$subject
-chmod 777 -R ../freesurfer/sub-ntr$subject
 
 echo "scp ../fmriprep/sub-ntr$subject.html skfk@neurodev3.umd.edu:/data/neurodev/NTR/fmriprep/fmriprep" >> $HOME/slurm/scp.sh
 echo "scp -r ../freesurfer/sub-ntr$subject skfk@neurodev3.umd.edu:/data/neurodev/NTR/fmriprep/freesurfer" >> $HOME/slurm/scp.sh

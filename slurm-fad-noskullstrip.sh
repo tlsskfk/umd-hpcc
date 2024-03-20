@@ -4,7 +4,7 @@ export HOME="/scratch/zt1/project/jpurcel8-prj/shared"
 export SOFTWARE_DIR="$HOME/fmriprep/software"
 export BIDS_DIR="$HOME/bids"
 export OUTPUT_DIR="$HOME/fmriprep/"
-export WORKING_DIR="/tmp/fmriprep/working"
+export WORKING_DIR="/tmp/fmriprep"
 export LOG_DIR="$HOME/fmriprep/log"
 
 export SINGULARITYENV_TEMPLATEFLOW_USE_PYBIDS=true
@@ -71,8 +71,7 @@ cd $HOME
 
 mkdir -p /tmp/fad$subject/fmriprep
 mkdir -p /tmp/fad$subject/.cache
-chmod 700 /tmp/fad$subject/fmriprep
-chmod 700 /tmp/fad$subject/.cache
+mkdir -p /tmp/fmriprep
 
 cp -r ./fmriprep/software /tmp/fad$subject/fmriprep
 cp -r ./.cache /tmp/fad$subject
@@ -80,10 +79,6 @@ cp -r ./.cache /tmp/fad$subject
 echo "Running Fmriprep processing for fad$subject..."
 $(declare -f run_singularity)
 run_singularity "fad$subject"
-
-chmod 777 ../fmriprep/sub-fad$subject.html
-chmod 777 -R ../freesurfer/sub-fad$subject
-chmod 777 -R ../fmriprep/sub-fad$subject
 
 echo "scp ../fmriprep/sub-fad$subject.html $DEST_URL:$DEST_PATH/fmriprep" >> $HOME/slurm/scp.sh
 echo "scp -r ../freesurfer/sub-fad$subject $DEST_URL:$DEST_PATH/freesurfer" >> $HOME/slurm/scp.sh
