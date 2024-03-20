@@ -24,4 +24,6 @@ curl https://cran.r-project.org/src/contrib/RcppParallel_5.1.7.tar.gz --output R
 curl https://cran.r-project.org/src/contrib/BH_1.84.0-0.tar.gz --output BH_1.84.0-0.tar.gz
 curl https://cran.r-project.org/src/contrib/rlang_1.1.3.tar.gz --output rlang_1.1.3.tar.gz
 curl https://cran.r-project.org/src/contrib/scales_1.3.0.tar.gz --output scales_1.3.0.tar.gz
+curl https://cran.r-project.org/src/contrib/vctrs_0.6.5.tar.gz --output vctrs_0.6.5.tar.gz
+curl https://cran.r-project.org/src/contrib/lifecycle_1.0.4.tar.gz --output lifecycle_1.0.4.tar.gz
 cd ../
