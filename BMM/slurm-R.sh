@@ -45,12 +45,14 @@ cat $R_SCRIPT >> $SLURM_R_SCRIPT
 
 echo "Running R processing with script $R_SCRIPT..."
 Rscript --save ./$SLURM_R_SCRIPT
+ls
+rm -r packages
 
-rm -R packages
-
-# mkdir -p $R_output_dir/output-$hash
-cp -R /tmp/$tmp_dir/* $R_output_dir/output-$hash
+mkdir -p $WDIR/output-$hash
+cp /tmp/$tmp_dir/*.rds $WDIR/output-$hash
+cp /tmp/$tmp_dir/*.csv $WDIR/output-$hash
 date >> $WDIR/scp.sh
+sbalance >> $WDIR/scp.sh
 # echo "scp ../output-$hash/* $SCP_OUTPUT_SERVER" >> $WDIR/scp.sh
 date
 EOF
