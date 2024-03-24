@@ -2,7 +2,7 @@
 
 SCP_OUTPUT_SERVER="skfk@neurodev3.umd.edu:/data/neurodev/HCP_Analyses/BMM"
 WDIR="/scratch/zt1/project/jpurcel8-prj/shared/slurm/BMM"
-R_SCRIPT="bayesian_trail_b.R"
+R_SCRIPT="main_bayes_zaratan.R"
 SLURM_R_SCRIPT="SLURM_$R_SCRIPT"
 
 hash=$(openssl rand -hex 3)
@@ -18,7 +18,7 @@ tmp_dir="jpurcel8-$hash"
 command_string=$(cat <<EOF
 #!/bin/bash
 #SBATCH -n 1
-#SBATCH -t 6-0
+#SBATCH -t 1-0
 #SBATCH -c 16
 #SBATCH --mem-per-cpu=4096
 #SBATCH --oversubscribe

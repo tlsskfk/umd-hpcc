@@ -2,9 +2,6 @@ library(tidyverse)
 # library(brms)
 library(pracma)
 
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-
-
 ## functions 
 
 W.str_selectbetweenpattern <- function(str, s1, s2, n1, n2){
@@ -201,7 +198,7 @@ library(brms)
 tomodpriors <- brm(zgraymatter~ X2_min * Age_yrs * log_trail_b + EstimatedTotalIntraCranialVol + Gender + BMI + walk_pace + Education_yrs +
                      (1 + X2_min * Age_yrs* log_trail_b + EstimatedTotalIntraCranialVol + Gender + BMI + walk_pace + Education_yrs | regionlvl2/regionlvl1 ) +
                      (1 | ID),
-                   data=data,chains=4,iter=100,warmup=10,cores=4,seed=1213)
+                   data=data,chains=4,iter=100,warmup=10,cores=16,seed=1213)
 
 #extract list of default priors to then modify as desired
 mypriors <- prior_summary(tomodpriors)
@@ -218,4 +215,4 @@ x2min_log_trail_b_level2in1_full <-brm(zgraymatter~ X2_min * Age_yrs * log_trail
                                    (1 | ID),
                                  control = list(adapt_delta = 0.99),
                                  prior = mypriors,
-                                 data=data,chains=16,iter=4000,warmup= 1000,cores=16,seed=1213, file = "./x2min_log_trail_b_lvl2in1_full.rds")
+                                 data=data,chains=4,iter=4000,warmup= 1000,cores=16,seed=1213, file = "./x2min_log_trail_b_lvl2in1_full.rds")
