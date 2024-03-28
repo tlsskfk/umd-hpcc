@@ -1,4 +1,17 @@
-og
+Record of times with combinations of different scripts and different chains/cores
+
+bayesian.R 
+4 4 - slow
 16 16
 8 16
 4 16
+
+
+for r50
+8 16 1hr 15 min
+16 16 2hr 45min
+4 16 53 min
+
+with threading 2
+4 16 1 hr 14 min
+8 16 1 hr 15 min

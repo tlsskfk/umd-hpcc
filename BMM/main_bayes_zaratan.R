@@ -4,8 +4,8 @@ library(pracma)
 ## Bayesian Model
 data = readRDS('./data_brms.RDS')
 
-run_model_prior <- function(md, data, seed = 1, iter_prior = 100, warmup_prior = 10, chains = 8, cores = 16){
-  command_prior = sprintf('tomodpriors = brm(%s, data = data, backend = backend,chains = chains, iter = iter_prior, warmup = warmup_prior, seed = seed, cores = cores)', md)   
+run_model_prior <- function(md, data, seed = 1, iter_prior = 100, warmup_prior = 10, chains = 4, cores = 16){
+  command_prior = sprintf('tomodpriors = brm(%s, data = data,chains = chains, iter = iter_prior, warmup = warmup_prior, seed = seed, cores = cores)', md)   
   print(command_prior)
   eval(parse(text = command_prior))
   
@@ -22,13 +22,12 @@ run_model_prior <- function(md, data, seed = 1, iter_prior = 100, warmup_prior =
   output$model = md
   output$mypriors = mypriors
   output$data = data
-  output$backend = backend
   output$chains = chains
   return(output)
 }
 run_model = function(temp,iter=4000,warmup= 1000, ...){
   tic()
-  command <- sprintf('result = brm(%s, control = list(adapt_delta = 0.99), prior = temp$mypriors, data = temp$data, chains = temp$chains, iter = iter, warmup = warmup, backend = temp$backend, ...)', temp$model)
+  command <- sprintf('result = brm(%s, control = list(adapt_delta = 0.99), prior = temp$mypriors, data = temp$data, chains = temp$chains, iter = iter, warmup = warmup, ...)', temp$model)
   eval(parse(text = command))
   result$elapsetime = toc()
   return(result)
@@ -37,16 +36,16 @@ run_model = function(temp,iter=4000,warmup= 1000, ...){
 
 
 
-subID = unique(data$ID)
-idx = sample(1:length(subID),50,replace = F)
-subID_50 = subID[idx]
-data_50 = data[data$ID %in% subID_50,]
+# subID = unique(data$ID)
+# idx = sample(1:length(subID),50,replace = F)
+# subID_50 = subID[idx]
+# data_50 = data[data$ID %in% subID_50,]
 
 
 md = "graymatter~ scale(RAVLT_tot) + scale(Age_yrs)  + Gender + BMI + scale(walk_pace) + scale(Education_yrs) +  scale(EstimatedTotalIntraCranialVol) + \
                           (1 + scale(RAVLT_tot) + scale(Age_yrs)  + Gender + BMI + scale(walk_pace) + scale(Education_yrs) +  scale(EstimatedTotalIntraCranialVol) | regionlvl2b/regionlvl1b) + \
                           (1 | ID)"
-temp = run_model_prior(md, data = data_50)
+temp = run_model_prior(md, data = data)
 result = run_model(temp, cores = 16, threads = threading(1), file = './result_RAVLT_R10.rds')
 
 
