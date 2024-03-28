@@ -33,18 +33,16 @@ echo "Running $R_SCRIPT..."
 cd $WDIR
 
 # Make a temporary directory for the job
-mkdir -p /tmp/$R_DIR
-cp -R $WDIR/* /tmp/$R_DIR
-cd /tmp/$R_DIR
+mkdir -p /tmp/$R_DIR/$script
+cp -R $WDIR/* /tmp/$R_DIR/$script
+cd /tmp/$R_DIR/$script
 
 # Create a new script with the necessary R code for running on zaratan
 cat packages.R >> SLURM_R_SCRIPT.R
-cat "$R_SCRIPT.R" >> SLURM_R_SCRIPT.R
+cat "$R_DIR/$CUR_RSCRIPT" >> SLURM_R_SCRIPT.R
 
-echo "Running R processing with script $R_SCRIPT..."
+echo "Running R processing with script $CUR_RSCRIPT..."
 Rscript --save ./SLURM_R_SCRIPT.R
-
-rm -r packages
 
 cp /tmp/$R_DIR/*.rds $WDIR/$R_DIR
 cp /tmp/$R_DIR/*.csv $WDIR/$R_DIR
@@ -63,6 +61,7 @@ EOF
 for script in "${listOfScripts[@]}"; do
   # Execute the Slurm script directly without creating a temporary file
   export CUR_RSCRIPT="$script.R"
+  export script=$script
   echo $CUR_RSCRIPT
   sbatch <<< "$command_string"
 done
