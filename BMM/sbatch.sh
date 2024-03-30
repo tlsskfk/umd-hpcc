@@ -1,19 +1,4 @@
 #!/bin/bash
-
-SCP_OUTPUT_SERVER="skfk@jude.umd.edu:/data/jude/HCP/HCP-Bayesian-Analysis"
-WDIR="/scratch/zt1/project/jpurcel8-prj/shared/slurm/BMM"
-R_SCRIPTS="1,2,3,4,5,6"
-R_DIR="set2"
-user="skfk"
-
-IFS="," read -r -a listOfScripts <<< "$R_SCRIPTS"
-
-# Download the necessary packages before the job runs
-# You can comment this out after the first time you run the script
-# source ./packages.sh
-
-command_string=$(cat <<EOF
-#!/bin/bash
 #SBATCH -n 1
 #SBATCH -t 7-0
 #SBATCH -c 16
@@ -57,17 +42,3 @@ sbalance
 date
 echo "This is the last 25 lines of output from the slurm job associated with $CUR_RSCRIPT" >> $WDIR/$R_DIR/$tmpwd-output.txt
 tail -n 25 $WDIR/output-$SLURM_JOB_ID >> $WDIR/$R_DIR/$tmpwd-output.txt
-
-EOF
-)
-
-for script in "${listOfScripts[@]}"; do
-  # Execute the Slurm script directly without creating a temporary file
-  export CUR_RSCRIPT="yi_$script.R"
-  export tmpwd="yi_$script"
-  sbatch <<< "$command_string"
-  sleep 2 
-done
-
-echo "Successfully Initiated Processing R Scripts: $R_SCRIPTS"
-
