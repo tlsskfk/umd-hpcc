@@ -10,10 +10,10 @@ IFS="," read -r -a listOfScripts <<< "$R_SCRIPTS"
 
 for script in "${listOfScripts[@]}"; do
   # Execute the Slurm script directly without creating a temporary file
-  export CUR_RSCRIPT="yi_$script.R"
-  export tmpwd="yi_$script"
+  export CUR_RSCRIPT="$script.R"
+  export tmpwd="$user-$script"
   echo "Submitting R job for script $script.R"
-  sbatch --export=SCP_OUTPUT_SERVER,WDIR,R_SCRIPTS,R_DIR,user,CUR_RSCRIPT,tmpwd ./sbatch.sh
+  sbatch --export=SCP_OUTPUT_SERVER,WDIR,R_SCRIPTS,R_DIR,user,script,CUR_RSCRIPT,tmpwd ./sbatch.sh
 done
 
 echo "Successfully Initiated Processing R Scripts: $R_SCRIPTS"
