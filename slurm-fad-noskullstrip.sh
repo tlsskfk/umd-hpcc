@@ -61,8 +61,6 @@ export SLURM_EXPORT_ENV=ALL
 
 export SINGULARITYENV_TEMPLATEFLOW_HOME=/tmp/fad$subject/.cache/templateflow
 
-printenv
-
 module purge
 module load singularity/3.9.8
 module load python/zen2/3.8.12
