@@ -24,8 +24,6 @@ echo "fMRIprep Batch Processing"
 echo "Subjects to process: $listOfSubjects"
 echo "---------------------------------------"
 
-rm $HOME/slurm/scp.sh
-
 run_singularity() {
   singularity run -B /scratch/zt1/project/jpurcel8-prj/shared/:/scratch/zt1/project/jpurcel8-prj/shared \
   --home /scratch/zt1/project/jpurcel8-prj/shared \
@@ -62,6 +60,8 @@ for subject in "$@"; do
 export SLURM_EXPORT_ENV=ALL
 
 export SINGULARITYENV_TEMPLATEFLOW_HOME=/tmp/fad$subject/.cache/templateflow
+
+printenv
 
 module purge
 module load singularity/3.9.8

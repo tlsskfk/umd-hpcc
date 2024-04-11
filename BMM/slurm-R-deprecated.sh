@@ -53,10 +53,10 @@ cp /tmp/$tmpwd/*.rds $WDIR/$R_DIR
 # You will need this if you want to send it to another server
 echo "scp $WDIR/$R_DIR/*.rds $WDIR/$R_DIR/*.txt $SCP_OUTPUT_SERVER" >> $WDIR/$R_DIR/scp.sh
 
-sbalance
-date
 echo "This is the last 25 lines of output from the slurm job associated with $CUR_RSCRIPT" >> $WDIR/$R_DIR/$tmpwd-output.txt
-tail -n 25 $WDIR/output-$SLURM_JOB_ID >> $WDIR/$R_DIR/$tmpwd-output.txt
+balance >> $WDIR/$R_DIR/$tmpwd-output.txt
+# The following line needs to be run post job
+echo "tail -n 25 $WDIR/output-$SLURM_JOB_ID >> $WDIR/$R_DIR/$tmpwd-output.txt"
 
 EOF
 )

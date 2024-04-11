@@ -10,7 +10,7 @@ bayesian.R
 for r50
 8 16 1hr 15 min
 16 16 2hr 45min
-4 16 53 min
+4 16 53 min <-- fastest (4 threads 16 cores)
 
 with threading 2
 4 16 1 hr 14 min

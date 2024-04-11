@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH -n 1
-#SBATCH -t 7-0
+#SBATCH -t 2-0
 #SBATCH -c 16
 #SBATCH --mem-per-cpu=4096
 #SBATCH --oversubscribe
@@ -11,8 +11,8 @@ SLURM_JOB_ID=$SLURM_JOB_ID
 echo $SLURM_JOB_ID
 
 module purge
-export R_LIBS=~/scratch/R_libs
-mkdir -p $R_LIBS
+# module switch umd-software-library/new
+# module load cmdstan/2.30.1/gcc/11.3.0/openmpi/4.1.5/zen2
 module load r
 
 date 
@@ -41,4 +41,4 @@ echo "scp $WDIR/$R_DIR/*.rds $WDIR/$R_DIR/*.txt $SCP_OUTPUT_SERVER" >> $WDIR/$R_
 sbalance
 date
 echo "This is the last 25 lines of output from the slurm job associated with $CUR_RSCRIPT" >> $WDIR/$R_DIR/$tmpwd-output.txt
-tail -n 25 $WDIR/output-$SLURM_JOB_ID.out >> $WDIR/$R_DIR/$tmpwd.out
+echo "tail -n 25 $WDIR/output-$SLURM_JOB_ID.out >> $WDIR/$R_DIR/$tmpwd.out"

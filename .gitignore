@@ -1,2 +1,8 @@
-scp.sh
-*.out
+**/scp.sh
+**/*.out
+**/*.RDS
+**/*.rds
+slurm*.out 
+**/*.tar.gz
+**/*.csv
+BMM/set2

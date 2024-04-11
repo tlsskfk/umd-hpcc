@@ -26,4 +26,12 @@ curl https://cran.r-project.org/src/contrib/rlang_1.1.3.tar.gz --output rlang_1.
 curl https://cran.r-project.org/src/contrib/scales_1.3.0.tar.gz --output scales_1.3.0.tar.gz
 curl https://cran.r-project.org/src/contrib/vctrs_0.6.5.tar.gz --output vctrs_0.6.5.tar.gz
 curl https://cran.r-project.org/src/contrib/lifecycle_1.0.4.tar.gz --output lifecycle_1.0.4.tar.gz
+curl -L https://github.com/stan-dev/cmdstanr/archive/refs/tags/v0.7.1.tar.gz --output cmdstanr_0.7.1.tar.gz
+curl https://cran.r-project.org/src/contrib/posterior_1.5.0.tar.gz --output posterior_1.5.0.tar.gz
+curl https://cran.r-project.org/src/contrib/htmlwidgets_1.6.4.tar.gz --output htmlwidgets_1.6.4.tar.gz
+curl https://cran.r-project.org/src/contrib/rmarkdown_2.26.tar.gz --output rmarkdown_2.26.tar.gz
+curl https://cran.r-project.org/src/contrib/knitr_1.45.tar.gz --output knitr_1.45.tar.gz
+curl https://cran.r-project.org/src/contrib/htmltools_0.5.8.1.tar.gz --output htmltools_0.5.8.1.tar.gz
+curl https://cran.r-project.org/src/contrib/DT_0.33.tar.gz --output DT_0.33.tar.gz
+# curl -L https://github.com/stan-dev/cmdstan/releases/download/v2.33.1/cmdstan-2.33.1-linux-arm64.tar.gz --output cmdstan-2.33.1.tar.gz
 cd ../
