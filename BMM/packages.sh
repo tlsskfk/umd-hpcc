@@ -33,5 +33,16 @@ curl https://cran.r-project.org/src/contrib/rmarkdown_2.26.tar.gz --output rmark
 curl https://cran.r-project.org/src/contrib/knitr_1.45.tar.gz --output knitr_1.45.tar.gz
 curl https://cran.r-project.org/src/contrib/htmltools_0.5.8.1.tar.gz --output htmltools_0.5.8.1.tar.gz
 curl https://cran.r-project.org/src/contrib/DT_0.33.tar.gz --output DT_0.33.tar.gz
-# curl -L https://github.com/stan-dev/cmdstan/releases/download/v2.33.1/cmdstan-2.33.1-linux-arm64.tar.gz --output cmdstan-2.33.1.tar.gz
+#curl https://cran.r-project.org/src/contrib/checkmate_2.3.1.tar.gz --output checkmate_2.3.1.tar.gz
+#curl https://cran.rstudio.com/src/contrib/matrixStats_1.3.0.tar.gz --output matrixStats_1.3.0.tar.gz
+curl https://cran.r-project.org/src/contrib/Rcpp_1.0.12.tar.gz --output Rcpp_1.0.12.tar.gz
+#curl https://cran.r-project.org/src/contrib/R6_2.5.1.tar.gz --output R6_2.5.1.tar.gz
+#curl https://cran.r-project.org/src/contrib/jsonlite_1.8.8.tar.gz --output jsonlite_1.8.8.tar.gz
+curl https://cran.r-project.org/src/contrib/htmlwidgets_1.6.4.tar.gz --output htmlwidgets_1.6.4.tar.gz
+curl https://cran.r-project.org/src/contrib/knitr_1.46.tar.gz --output knitr_1.46.tar.gz
+curl https://cran.r-project.org/src/contrib/rmarkdown_2.26.tar.gz --output rmarkdown_2.26.tar.gz
+curl https://cran.r-project.org/src/contrib/xfun_0.43.tar.gz --output xfun_0.43.tar.gz
+curl https://cran.r-project.org/src/contrib/htmltools_0.5.8.1.tar.gz --output htmltools_0.5.8.1.tar.gz
+curl https://cran.r-project.org/src/contrib/DT_0.33.tar.gz --output DT_0.33.tar.gz
+curl -L https://github.com/stan-dev/cmdstan/releases/download/v2.34.1/cmdstan-2.34.1-linux-arm64.tar.gz --output cmdstan-2.34.1.tar.gz
 cd ../

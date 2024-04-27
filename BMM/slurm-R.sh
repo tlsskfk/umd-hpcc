@@ -3,7 +3,7 @@
 export SCP_OUTPUT_SERVER="skfk@jude.umd.edu:/data/jude/HCP/HCP-Bayesian-Analysis"
 export WDIR="/scratch/zt1/project/jpurcel8-prj/shared/slurm/BMM"
 # export R_SCRIPTS="1,2,3,4,5,6"
-export R_SCRIPTS="3"
+export R_SCRIPTS="9"
 export R_DIR="set2"
 export user="skfk"
 export packages="packages_new_r.R"
