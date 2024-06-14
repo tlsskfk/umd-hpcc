@@ -4,13 +4,17 @@
 **/.cache
 
 # fmriprep files/directories
-**/slurm/scp.sh
-**/bids/*
-**/fmriprep/*
-**/freesurfer/*
+slurm/scp.sh
+bids/*
+fmriprep/*
+freesurfer/*
 !/bids/*.example
 !/fmriprep/*.example
+!/fmriprep/software/
+/fmriprep/software/*
 !/fmriprep/software/*.example
+!/fmriprep/log/
+/fmriprep/log/*
 !/fmriprep/log/*.example
 !/fmriprep/logs
 !/freesurfer/*.example
