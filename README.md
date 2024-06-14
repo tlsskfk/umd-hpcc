@@ -5,6 +5,9 @@ Repository for methods and scripts designed for University of Maryland's HPCC Za
 This section is not working as of yet.
 
 # Fmriprep jobs on Zaratan
+## Trying to run a fmriprep job? 
+Check out [./slurm/README.md](./slurm/README.md)
+
 ## Directory Structure
 We will be using `/scratch/zt1/project/$PROJECTNAME/shared` as our main working directory.
 This repository is located in the folder `slurm`, along with the scripts for sending jobs.

@@ -74,9 +74,9 @@ echo "Running Fmriprep processing for ntr$subject..."
 $(declare -f run_singularity)
 run_singularity "ntr$subject"
 
-echo "scp ../fmriprep/sub-ntr$subject.html skfk@neurodev3.umd.edu:/data/neurodev/NTR/fmriprep/fmriprep" >> $HOME/slurm/scp.sh
-echo "scp -r ../freesurfer/sub-ntr$subject skfk@neurodev3.umd.edu:/data/neurodev/NTR/fmriprep/freesurfer" >> $HOME/slurm/scp.sh
-echo "scp -r ../fmriprep/sub-ntr$subject skfk@neurodev3.umd.edu:/data/neurodev/NTR/fmriprep/fmriprep" >> $HOME/slurm/scp.sh
+echo "scp ../fmriprep/sub-ntr$subject.html $USER@neurodev3.umd.edu:/data/neurodev/NTR/fmriprep/fmriprep" >> $HOME/slurm/scp.sh
+echo "scp -r ../freesurfer/sub-ntr$subject $USER@neurodev3.umd.edu:/data/neurodev/NTR/fmriprep/freesurfer" >> $HOME/slurm/scp.sh
+echo "scp -r ../fmriprep/sub-ntr$subject $USER@neurodev3.umd.edu:/data/neurodev/NTR/fmriprep/fmriprep" >> $HOME/slurm/scp.sh
 
 EOF
 )

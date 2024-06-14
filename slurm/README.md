@@ -47,7 +47,7 @@ you can check using the command
 Once the job starts, you should see a slurm-123456.out in the current directory.
 This will concern the job.
 If you see no errors, you can proceed to checking the log file.
-If it doesn't look like this [example](./slurm/slurm-123456.out.example) then something bad probably happened.
+If it doesn't look like this [example](./slurm/slurm-1234567.out.example) then something bad probably happened.
 Try the `squeue` command again.  If the job is no longer running, something for sure bad happened.
 
 The next log you can check will exist in the following directory, 

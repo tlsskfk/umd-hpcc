@@ -10,7 +10,7 @@ export LOG_DIR="$HOME/fmriprep/log"
 export SINGULARITYENV_TEMPLATEFLOW_USE_PYBIDS=true
 export SLURM_EXPORT_ENV=ALL
 
-export DEST_URL="skfk@jude.umd.edu"
+export DEST_URL="$USER@jude.umd.edu"
 export DEST_PATH="/data/jude/FAD/fmriprep"
 
 listOfSubjects=""
