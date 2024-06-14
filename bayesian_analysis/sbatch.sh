@@ -6,15 +6,13 @@
 #SBATCH --oversubscribe
 
 export SLURM_EXPORT_ENV=ALL
-
+#export CMDSTAN=$WDIR/packages_extracted/cmdstan-2.34.1
 SLURM_JOB_ID=$SLURM_JOB_ID
 module purge
-module switch umd-software-library/new
-module load cmdstan/2.30.1/gcc/11.3.0/openmpi/4.1.5/zen2
-module load r/4.3.2/gcc/11.3.0/linux-rhel8-zen2
-#module switch umd-software-library/old
-#module load cmdstan
-#module load r
+#module switch umd-software-library/new
+module load openmpi
+#module load r/4.3.2/gcc/11.3.0/linux-rhel8-zen2
+module load r
 
 
 date 
@@ -24,19 +22,20 @@ cd $WDIR
 
 echo "Make a temporary directory for the job"
 mkdir -p /tmp/$SLURM_JOB_ID
-cp -R $WDIR/* /tmp/$SLURM_JOB_ID/
+cp -R $WDIR/$R_DIR /tmp/$SLURM_JOB_ID/
+cp $WDIR/*.R /tmp/$SLURM_JOB_ID/
+cp $WDIR/*.RDS /tmp/$SLURM_JOB_ID/
+cp $WDIR/*.csv /tmp/$SLURM_JOB_ID/
 cd /tmp/$SLURM_JOB_ID
-ls
-pwd
+
 echo "Create a new script with the necessary R code for running on zaratan"
 cat $packages >> SLURM_R_SCRIPT$script.R
 cat "$R_DIR/$CUR_RSCRIPT" >> SLURM_R_SCRIPT$script.R
 
 echo "Running R processing with script $CUR_RSCRIPT..."
-export R_LIBS=./tmp/$SLURM_JOB_ID/packages
+export R_LIBS=$WDIR/packages_extracted/
 unset R_HOME
-echo $CMDSTAN
-printenv
+
 Rscript --save ./SLURM_R_SCRIPT$script.R
 
 echo "copy results over to output directory"

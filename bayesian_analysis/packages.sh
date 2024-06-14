@@ -44,5 +44,9 @@ curl https://cran.r-project.org/src/contrib/rmarkdown_2.26.tar.gz --output rmark
 curl https://cran.r-project.org/src/contrib/xfun_0.43.tar.gz --output xfun_0.43.tar.gz
 curl https://cran.r-project.org/src/contrib/htmltools_0.5.8.1.tar.gz --output htmltools_0.5.8.1.tar.gz
 curl https://cran.r-project.org/src/contrib/DT_0.33.tar.gz --output DT_0.33.tar.gz
-curl -L https://github.com/stan-dev/cmdstan/releases/download/v2.34.1/cmdstan-2.34.1-linux-arm64.tar.gz --output cmdstan-2.34.1.tar.gz
+curl -L https://github.com/stan-dev/cmdstan/releases/download/v2.34.1/cmdstan-2.34.1.tar.gz --output cmdstan-2.34.1.tar.gz
 cd ../
+mkdir -p ./packages_extracted
+for package in ./packages/*.tar.gz; do
+    tar -xzvf $package -C ./packages_extracted
+done
