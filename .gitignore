@@ -7,7 +7,11 @@
 slurm/scp.sh
 bids/*
 fmriprep/*
+
 freesurfer/*
+!/freesurfer/
+!/freesurfer/*.example
+
 !/bids/*.example
 !/fmriprep/*.example
 !/fmriprep/software/
@@ -17,7 +21,6 @@ freesurfer/*
 /fmriprep/log/*
 !/fmriprep/log/*.example
 !/fmriprep/logs
-!/freesurfer/*.example
 
 # bayesian non-relevant files
 **/bayesian_analysis/*.RDS

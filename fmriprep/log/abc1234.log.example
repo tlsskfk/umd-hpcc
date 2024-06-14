@@ -1,0 +1,100 @@
+	 [Node] Executing "_val_bold0" <niworkflows.interfaces.images.ValidateImage>
+240502-23:55:41,345 nipype.workflow INFO:
+	 [Node] Finished "_val_bold0", elapsed time 0.007721s.
+240502-23:55:43,527 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_fad1010_wf.func_preproc_ses_6m_task_fnt_run_1_wf.bold_std_trans_wf.bold_reference_wf.gen_ref" in "/tmp/fmriprep/fmriprep_wf/single_subject_fad1010_wf/func_preproc_ses_6m_task_fnt_run_1_wf/bold_std_trans_wf/bold_reference_wf/_std_target_MNI152NLin2009cAsym.res1/gen_ref".
+240502-23:55:43,530 nipype.workflow INFO:
+	 [Node] Executing "gen_ref" <niworkflows.interfaces.registration.EstimateReferenceImage>
+240502-23:56:08,209 nipype.interface INFO:
+	 stderr 2024-05-02T23:56:08.209014:++ 3dvolreg: AFNI version=Debian-16.2.07~dfsg.1-5~nd16.04+1 (Jun 12 2017) [64-bit]
+240502-23:56:08,209 nipype.interface INFO:
+	 stderr 2024-05-02T23:56:08.209014:++ Authored by: RW Cox
+240502-23:56:08,210 nipype.interface INFO:
+	 stderr 2024-05-02T23:56:08.210099:** AFNI converts NIFTI_datatype=4 (INT16) in file /tmp/fmriprep/fmriprep_wf/single_subject_fad1010_wf/func_preproc_ses_6m_task_fnt_run_1_wf/bold_std_trans_wf/bold_reference_wf/_std_target_MNI152NLin2009cAsym.res1/gen_ref/slice.nii.gz to FLOAT32
+240502-23:56:08,210 nipype.interface INFO:
+	 stderr 2024-05-02T23:56:08.210336:     Warnings of this type will be muted for this session.
+240502-23:56:08,210 nipype.interface INFO:
+	 stderr 2024-05-02T23:56:08.210336:     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+240502-23:57:44,650 nipype.interface INFO:
+	 stderr 2024-05-02T23:57:44.650121:++ Max displacement in automask = 0.11 (mm) at sub-brick 10
+240502-23:57:44,650 nipype.interface INFO:
+	 stderr 2024-05-02T23:57:44.650121:++ Max delta displ  in automask = 0.16 (mm) at sub-brick 11
+240502-23:58:17,657 nipype.workflow INFO:
+	 [Node] Finished "gen_ref", elapsed time 154.126072s.
+240502-23:58:21,488 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_fad1010_wf.func_preproc_ses_6m_task_fnt_run_1_wf.bold_std_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.n4_correct" in "/tmp/fmriprep/fmriprep_wf/single_subject_fad1010_wf/func_preproc_ses_6m_task_fnt_run_1_wf/bold_std_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/_std_target_MNI152NLin2009cAsym.res1/n4_correct".
+240502-23:58:21,491 nipype.workflow INFO:
+	 [Node] Executing "n4_correct" <niworkflows.interfaces.fixes.FixN4BiasFieldCorrection>
+240502-23:58:44,388 nipype.workflow INFO:
+	 [Node] Finished "n4_correct", elapsed time 22.895535s.
+240502-23:58:45,525 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_fad1010_wf.func_preproc_ses_6m_task_fnt_run_1_wf.bold_std_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_pass" in "/tmp/fmriprep/fmriprep_wf/single_subject_fad1010_wf/func_preproc_ses_6m_task_fnt_run_1_wf/bold_std_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/_std_target_MNI152NLin2009cAsym.res1/skullstrip_first_pass".
+240502-23:58:45,525 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_fad1010_wf.func_preproc_ses_6m_task_fnt_run_1_wf.bold_std_trans_wf.outputnode" in "/tmp/fmriprep/fmriprep_wf/single_subject_fad1010_wf/func_preproc_ses_6m_task_fnt_run_1_wf/bold_std_trans_wf/outputnode".
+240502-23:58:45,527 nipype.workflow INFO:
+	 [Node] Executing "skullstrip_first_pass" <nipype.interfaces.fsl.preprocess.BET>
+240502-23:58:45,530 nipype.workflow INFO:
+	 [Node] Executing "outputnode" <nipype.interfaces.utility.base.IdentityInterface>
+240502-23:58:45,531 nipype.workflow INFO:
+	 [Node] Finished "outputnode", elapsed time 0.000368s.
+240502-23:58:47,704 nipype.workflow INFO:
+	 [Node] Finished "skullstrip_first_pass", elapsed time 2.175434s.
+240502-23:58:49,518 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_fad1010_wf.func_preproc_ses_6m_task_fnt_run_1_wf.bold_std_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_dilate" in "/tmp/fmriprep/fmriprep_wf/single_subject_fad1010_wf/func_preproc_ses_6m_task_fnt_run_1_wf/bold_std_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/_std_target_MNI152NLin2009cAsym.res1/skullstrip_first_dilate".
+240502-23:58:49,521 nipype.workflow INFO:
+	 [Node] Executing "skullstrip_first_dilate" <nipype.interfaces.fsl.maths.DilateImage>
+240502-23:58:49,532 nipype.interface WARNING:
+	 Changing /scratch/zt1/project/jpurcel8-prj/shared/fmriprep/sub-fad1010/ses-6m/func/sub-fad1010_ses-6m_task-fnt_run-1_space-MNI152NLin2009cAsym_res-1_desc-brain_mask.nii.gz dtype from float64 to uint8
+240503-00:01:40,180 nipype.interface WARNING:
+	 Changing /scratch/zt1/project/jpurcel8-prj/shared/fmriprep/sub-fad1010/ses-6m/func/sub-fad1010_ses-6m_task-fnt_run-1_space-MNI152NLin2009cAsym_res-1_desc-aparcaseg_dseg.nii.gz dtype from float64 to int16
+240503-00:01:41,45 nipype.interface WARNING:
+	 Changing /scratch/zt1/project/jpurcel8-prj/shared/fmriprep/sub-fad1010/ses-6m/func/sub-fad1010_ses-6m_task-fnt_run-1_space-MNI152NLin2009cAsym_res-1_desc-aseg_dseg.nii.gz dtype from float64 to int16
+240503-00:03:45,337 nipype.workflow INFO:
+	 [Node] Finished "skullstrip_first_dilate", elapsed time 295.814695s.
+240503-00:03:46,362 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_fad1010_wf.func_preproc_ses_6m_task_fnt_run_1_wf.bold_std_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_mask" in "/tmp/fmriprep/fmriprep_wf/single_subject_fad1010_wf/func_preproc_ses_6m_task_fnt_run_1_wf/bold_std_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/_std_target_MNI152NLin2009cAsym.res1/skullstrip_first_mask".
+240503-00:03:46,366 nipype.workflow INFO:
+	 [Node] Executing "skullstrip_first_mask" <nipype.interfaces.fsl.maths.ApplyMask>
+240503-00:03:47,243 nipype.workflow INFO:
+	 [Node] Finished "skullstrip_first_mask", elapsed time 0.87615s.
+240503-00:03:48,365 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_fad1010_wf.func_preproc_ses_6m_task_fnt_run_1_wf.bold_std_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.unifize" in "/tmp/fmriprep/fmriprep_wf/single_subject_fad1010_wf/func_preproc_ses_6m_task_fnt_run_1_wf/bold_std_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/_std_target_MNI152NLin2009cAsym.res1/unifize".
+240503-00:03:48,369 nipype.workflow INFO:
+	 [Node] Executing "unifize" <nipype.interfaces.afni.utils.Unifize>
+240503-00:04:45,409 nipype.workflow INFO:
+	 [Node] Finished "unifize", elapsed time 57.039954s.
+240503-00:04:46,422 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_fad1010_wf.func_preproc_ses_6m_task_fnt_run_1_wf.bold_std_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.fixhdr_unifize" in "/tmp/fmriprep/fmriprep_wf/single_subject_fad1010_wf/func_preproc_ses_6m_task_fnt_run_1_wf/bold_std_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/_std_target_MNI152NLin2009cAsym.res1/fixhdr_unifize".
+240503-00:04:46,424 nipype.workflow INFO:
+	 [Node] Executing "fixhdr_unifize" <niworkflows.interfaces.utils.CopyXForm>
+240503-00:04:46,899 nipype.workflow INFO:
+	 [Node] Finished "fixhdr_unifize", elapsed time 0.473353s.
+240503-00:04:48,419 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_fad1010_wf.func_preproc_ses_6m_task_fnt_run_1_wf.bold_std_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.skullstrip_second_pass" in "/tmp/fmriprep/fmriprep_wf/single_subject_fad1010_wf/func_preproc_ses_6m_task_fnt_run_1_wf/bold_std_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/_std_target_MNI152NLin2009cAsym.res1/skullstrip_second_pass".
+240503-00:04:48,422 nipype.workflow INFO:
+	 [Node] Executing "skullstrip_second_pass" <nipype.interfaces.afni.preprocess.Automask>
+240503-00:04:51,432 nipype.workflow INFO:
+	 [Node] Finished "skullstrip_second_pass", elapsed time 3.009306s.
+240503-00:04:52,426 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_fad1010_wf.func_preproc_ses_6m_task_fnt_run_1_wf.bold_std_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.fixhdr_skullstrip2" in "/tmp/fmriprep/fmriprep_wf/single_subject_fad1010_wf/func_preproc_ses_6m_task_fnt_run_1_wf/bold_std_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/_std_target_MNI152NLin2009cAsym.res1/fixhdr_skullstrip2".
+240503-00:04:52,429 nipype.workflow INFO:
+	 [Node] Executing "fixhdr_skullstrip2" <niworkflows.interfaces.utils.CopyXForm>
+240503-00:04:52,489 nipype.workflow INFO:
+	 [Node] Finished "fixhdr_skullstrip2", elapsed time 0.060049s.
+240503-00:04:54,420 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_fad1010_wf.func_preproc_ses_6m_task_fnt_run_1_wf.bold_std_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.combine_masks" in "/tmp/fmriprep/fmriprep_wf/single_subject_fad1010_wf/func_preproc_ses_6m_task_fnt_run_1_wf/bold_std_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/_std_target_MNI152NLin2009cAsym.res1/combine_masks".
+240503-00:04:54,423 nipype.workflow INFO:
+	 [Node] Executing "combine_masks" <nipype.interfaces.fsl.maths.BinaryMaths>
+240503-00:04:54,895 nipype.workflow INFO:
+	 [Node] Finished "combine_masks", elapsed time 0.470656s.
+240503-00:04:56,431 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_fad1010_wf.func_preproc_ses_6m_task_fnt_run_1_wf.bold_std_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.apply_mask" in "/tmp/fmriprep/fmriprep_wf/single_subject_fad1010_wf/func_preproc_ses_6m_task_fnt_run_1_wf/bold_std_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/_std_target_MNI152NLin2009cAsym.res1/apply_mask".
+240503-00:04:56,434 nipype.workflow INFO:
+	 [Node] Executing "apply_mask" <nipype.interfaces.fsl.maths.ApplyMask>
+240503-00:04:57,288 nipype.workflow INFO:
+	 [Node] Finished "apply_mask", elapsed time 0.852996s.
+240503-00:05:00,419 nipype.workflow IMPORTANT:
+	 fMRIPrep finished successfully!
+240503-00:05:00,420 nipype.workflow IMPORTANT:
+	 Works derived from this fMRIPrep execution should include the boilerplate text found in <OUTPUT_PATH>/fmriprep/logs/CITATION.md.
+2024-05-03 00:05:07 - Completed Processing of subject fad1010
