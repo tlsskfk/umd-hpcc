@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# July 9, 2024 - Steve
+# This script is a copy of fad noskullstrip with a few adjustments
+# fmriprep is run for anat only and only uses the 6m subjects - by using a different bids-filter-file json
+
 export HOME="/scratch/zt1/project/jpurcel8-prj/shared"
 export SOFTWARE_DIR="$HOME/fmriprep/software"
 export BIDS_DIR="$HOME/bids"
@@ -36,11 +40,12 @@ run_singularity() {
   --skull-strip-template MNI152NLin2009cAsym \
   --output-spaces MNI152NLin2009cAsym:res-1 \
   --n_cpus 16 \
+  --anat-only \
   --nthreads 16 \
   --omp-nthreads 8 \
   --mem 64G \
   --skip_bids_validation \
-  --bids-filter-file $HOME/slurm/fadconfig.json \
+  --bids-filter-file $HOME/slurm/fadconfig_6m.json \
   --skull-strip-t1w skip \
   --fs-license-file /tmp/$1/fmriprep/software/license.txt >> "$LOG_DIR/$1.log"
 
@@ -78,9 +83,9 @@ echo "Running Fmriprep processing for fad$subject..."
 $(declare -f run_singularity)
 run_singularity "fad$subject"
 
-echo "scp ../fmriprep/sub-fad$subject.html $DEST_URL:$DEST_PATH/fmriprep" >> $HOME/slurm/scp.sh
+echo "scp ../fmriprep/sub-fad$subject.html $DEST_URL:$DEST_PATH/fmriprep/sub-fad$subject-6m.html" >> $HOME/slurm/scp.sh
 echo "scp -r ../freesurfer/sub-fad$subject $DEST_URL:$DEST_PATH/freesurfer" >> $HOME/slurm/scp.sh
-echo "scp -r ../fmriprep/sub-fad$subject $DEST_URL:$DEST_PATH/fmriprep" >> $HOME/slurm/scp.sh
+echo "scp -r ../fmriprep/sub-fad$subject/ses-6m/anat $DEST_URL:$DEST_PATH/fmriprep/sub-fad$subject/ses-6m" >> $HOME/slurm/scp.sh
 
 EOF
 )

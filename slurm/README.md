@@ -74,7 +74,8 @@ find your subject and copy and paste it into the command line to send it back to
 Make sure that the slurm output looks good.
 There should be a clear 'job has finished' message at the end.
 
-## Final steps: Changing Destination Permissions
+## Final steps
+### 1. Changing Destination Permissions
 
 Changing permissions of the files at destination
 
@@ -101,5 +102,9 @@ You can check the check your files afterwards with
 	ls -la
 
 It should change color and you should be able to tell that the permissions have changed.
+
+### 2. Cleaning up
+In the original zaratan server, cleanup the folder `fmriprep/sub-abc1234` and `freesurfer/sub-abc1234` and file `fmriprep/sub-abc1234.html` with `rm -rf fmriprep/sub-abc1234 && rm -rf freesurfer/sub-abc1234`
+This should be findable from the shared folder
 
 Done! :)

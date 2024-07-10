@@ -2,6 +2,7 @@
 **/slurm*.out
 **/.afni.log
 **/.cache
+.viminfo
 
 # fmriprep files/directories
 slurm/scp.sh
