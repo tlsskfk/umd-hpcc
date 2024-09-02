@@ -1,0 +1,4 @@
+{
+  "t2w": {"datatype": "anat", "suffix": "T2w"},
+  "t1w": {"datatype": "anat", "suffix": "T1w"}
+}

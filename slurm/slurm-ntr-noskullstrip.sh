@@ -60,7 +60,7 @@ export SINGULARITYENV_TEMPLATEFLOW_HOME=/tmp/ntr$subject/.cache/templateflow
 
 module purge
 module load singularity/3.9.8
-module load python/zen2/3.8.12
+module load python/gcc/11.3.0/linux-rhel8-zen2/3.10.10
 
 cd $HOME
 
@@ -74,9 +74,11 @@ echo "Running Fmriprep processing for ntr$subject..."
 $(declare -f run_singularity)
 run_singularity "ntr$subject"
 
-echo "scp ../fmriprep/sub-ntr$subject.html $USER@neurodev3.umd.edu:/data/neurodev/NTR/fmriprep/fmriprep" >> $HOME/slurm/scp.sh
-echo "scp -r ../freesurfer/sub-ntr$subject $USER@neurodev3.umd.edu:/data/neurodev/NTR/fmriprep/freesurfer" >> $HOME/slurm/scp.sh
-echo "scp -r ../fmriprep/sub-ntr$subject $USER@neurodev3.umd.edu:/data/neurodev/NTR/fmriprep/fmriprep" >> $HOME/slurm/scp.sh
+echo "scp ../fmriprep/sub-ntr$subject.html $USER@neurodev3.umd.edu:/data/neurodev/NTR/fmriprep/fmriprep" >> $HOME/slurm/${USER}-scp.sh
+echo "scp -r ../freesurfer/sub-ntr$subject $USER@neurodev3.umd.edu:/data/neurodev/NTR/fmriprep/freesurfer" >> $HOME/slurm/${USER}-scp.sh
+echo "scp -r ../fmriprep/sub-ntr$subject $USER@neurodev3.umd.edu:/data/neurodev/NTR/fmriprep/fmriprep" >> $HOME/slurm/${USER}-scp.sh
+
+echo "tail ../fmriprep/logs/sub-ntr$subject.log"
 
 EOF
 )

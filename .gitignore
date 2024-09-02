@@ -3,6 +3,7 @@
 **/.afni.log
 **/.cache
 .viminfo
+**/*scp.sh
 
 # fmriprep files/directories
 slurm/scp.sh
@@ -24,6 +25,7 @@ freesurfer/*
 !/fmriprep/logs
 
 # bayesian non-relevant files
+bayesian_analysis
 **/bayesian_analysis/*.RDS
 **/bayesian_analysis/*.rds
 **/*.tar.gz
@@ -33,3 +35,6 @@ freesurfer/*
 **/bayesian_analysis/set2/*
 !/bayesian_analysis/set2/*.example
 R_libs/*
+
+# bayesian second project
+hcp-structure-analysis/

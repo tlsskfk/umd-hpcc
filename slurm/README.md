@@ -64,7 +64,7 @@ BTW, you can escape `tail -f` by doing ctrl+c`
 You should see the log output to the terminal (sometimes it takes a bit).
 If not, check out the previous troubleshooting steps.
 
-If everything looks fine let it sit for around 24 hours and when it is finished there should be outputs from scp.sh in that same directory like
+If everything looks fine let it sit for around 24 hours and when it is finished there should be outputs from `$USER-scp.sh` in that same directory like
 
 	scp ../fmriprep/sub-fad1229.html skfk@jude.umd.edu:/data/jude/FAD/fmriprep/fmriprep
 	scp -r ../freesurfer/sub-fad1229 skfk@jude.umd.edu:/data/jude/FAD/fmriprep/freesurfer
@@ -72,7 +72,6 @@ If everything looks fine let it sit for around 24 hours and when it is finished 
 
 find your subject and copy and paste it into the command line to send it back to jude.
 Make sure that the slurm output looks good.
-There should be a clear 'job has finished' message at the end.
 
 ## Final steps
 ### 1. Changing Destination Permissions
@@ -106,5 +105,7 @@ It should change color and you should be able to tell that the permissions have 
 ### 2. Cleaning up
 In the original zaratan server, cleanup the folder `fmriprep/sub-abc1234` and `freesurfer/sub-abc1234` and file `fmriprep/sub-abc1234.html` with `rm -rf fmriprep/sub-abc1234 && rm -rf freesurfer/sub-abc1234`
 This should be findable from the shared folder
+
+Remove the slurm output folder at `slurm/slurm-123456.out` 
 
 Done! :)

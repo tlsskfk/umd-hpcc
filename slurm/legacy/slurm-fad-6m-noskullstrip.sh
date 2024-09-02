@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# July 9, 2024 - Steve
+# This script is a copy of fad noskullstrip with a few adjustments
+# fmriprep is run for anat only and only uses the 6m subjects - by using a different bids-filter-file json
+
 export HOME="/scratch/zt1/project/jpurcel8-prj/shared"
 export SOFTWARE_DIR="$HOME/fmriprep/software"
 export BIDS_DIR="$HOME/bids"
@@ -36,15 +40,15 @@ run_singularity() {
   --skull-strip-template MNI152NLin2009cAsym \
   --output-spaces MNI152NLin2009cAsym:res-1 \
   --n_cpus 16 \
+  --anat-only \
   --nthreads 16 \
   --omp-nthreads 8 \
   --mem 64G \
-  --bids-filter-file $HOME/slurm/fad6mconfig.json \
   --skip_bids_validation \
+  --bids-filter-file $HOME/slurm/fadconfig_6m.json \
   --skull-strip-t1w skip \
   --fs-license-file /tmp/$1/fmriprep/software/license.txt >> "$LOG_DIR/$1.log"
-  
-  echo "$(date '+%Y-%m-%d %H:%M:%S') - Completed Processing of subject $1" 
+
   echo "$(date '+%Y-%m-%d %H:%M:%S') - Completed Processing of subject $1" >> "$LOG_DIR/$1.log"
 }
 
@@ -53,7 +57,7 @@ for subject in "$@"; do
   command_string=$(cat <<EOF
 #!/bin/bash
 #SBATCH -n 1
-#SBATCH -t 7-0
+#SBATCH -t 5-0
 #SBATCH -c 16
 #SBATCH --mem-per-cpu=4096
 #SBATCH --oversubscribe
@@ -64,7 +68,7 @@ export SINGULARITYENV_TEMPLATEFLOW_HOME=/tmp/fad$subject/.cache/templateflow
 
 module purge
 module load singularity/3.9.8
-module load python/gcc/11.3.0/linux-rhel8-zen2/3.10.10
+module load python/zen2/3.8.12
 
 cd $HOME
 
@@ -79,11 +83,9 @@ echo "Running Fmriprep processing for fad$subject..."
 $(declare -f run_singularity)
 run_singularity "fad$subject"
 
-
-
-echo "scp ../fmriprep/sub-fad$subject.html $DEST_URL:$DEST_PATH/fmriprep/sub-fad$subject-6m.html" >> $HOME/slurm/${USER}-scp.sh
-echo "scp -r ../freesurfer/sub-fad$subject/* $DEST_URL:$DEST_PATH/freesurfer/sub-fad$subject/ses-6m/" >> $HOME/slurm/${USER}-scp.sh
-echo "scp -r ../fmriprep/sub-fad$subject $DEST_URL:$DEST_PATH/fmriprep" >> $HOME/slurm/${USER}-scp.sh
+echo "scp ../fmriprep/sub-fad$subject.html $DEST_URL:$DEST_PATH/fmriprep/sub-fad$subject-6m.html" >> $HOME/slurm/scp.sh
+echo "scp -r ../freesurfer/sub-fad$subject $DEST_URL:$DEST_PATH/freesurfer" >> $HOME/slurm/scp.sh
+echo "scp -r ../fmriprep/sub-fad$subject/ses-6m/anat $DEST_URL:$DEST_PATH/fmriprep/sub-fad$subject/ses-6m" >> $HOME/slurm/scp.sh
 
 EOF
 )
