@@ -4,14 +4,13 @@ export HOME="/scratch/zt1/project/jpurcel8-prj/shared"
 export SOFTWARE_DIR="$HOME/fmriprep/software"
 export BIDS_DIR="$HOME/bids"
 export OUTPUT_DIR="$HOME/fmriprep/"
-export WORKING_DIR="/tmp/fmriprep"
 export LOG_DIR="$HOME/fmriprep/log"
 
 export SINGULARITYENV_TEMPLATEFLOW_USE_PYBIDS=true
 export SLURM_EXPORT_ENV=ALL
 
 export DEST_URL="$USER@jude.umd.edu"
-export DEST_PATH="/data/jude/FAD/fmriprep"
+export DEST_PATH="/data/jude/FAD/fmriprep-almost"
 
 listOfSubjects=""
 
@@ -32,18 +31,19 @@ run_singularity() {
   bids ./ \
   participant \
   --participant-label "$1" \
-  --work-dir $WORKING_DIR \
+  --work-dir /tmp/${USER} \
   --skull-strip-template MNI152NLin2009cAsym \
   --output-spaces MNI152NLin2009cAsym:res-1 \
   --n_cpus 16 \
   --nthreads 16 \
   --omp-nthreads 8 \
+  --bids-filter-file $HOME/slurm/fadconfig.json \
   --mem 64G \
   --skip_bids_validation \
   --skull-strip-t1w skip \
   --fs-license-file /tmp/$1/fmriprep/software/license.txt >> "$LOG_DIR/$1.log"
-#  --bids-filter-file $HOME/slurm/fadconfig.json \
-
+  
+  echo "$(date '+%Y-%m-%d %H:%M:%S') - Completed Processing of subject $1" 
   echo "$(date '+%Y-%m-%d %H:%M:%S') - Completed Processing of subject $1" >> "$LOG_DIR/$1.log"
 }
 
@@ -52,8 +52,8 @@ for subject in "$@"; do
   command_string=$(cat <<EOF
 #!/bin/bash
 #SBATCH -n 1
-#SBATCH -t 5-0
-#SBATCH -c 16
+#SBATCH -t 7-0
+#SBATCH -c 8
 #SBATCH --mem-per-cpu=4096
 #SBATCH --oversubscribe
 
@@ -77,6 +77,8 @@ cp -r ./.cache /tmp/fad$subject
 echo "Running Fmriprep processing for fad$subject..."
 $(declare -f run_singularity)
 run_singularity "fad$subject"
+
+echo "Done running subject fad$subject" 
 
 echo "scp ../fmriprep/sub-fad$subject.html $DEST_URL:$DEST_PATH/fmriprep" >> $HOME/slurm/${USER}-scp.sh
 echo "scp -r ../freesurfer/sub-fad$subject $DEST_URL:$DEST_PATH/freesurfer" >> $HOME/slurm/${USER}-scp.sh

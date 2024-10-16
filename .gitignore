@@ -38,3 +38,8 @@ R_libs/*
 
 # bayesian second project
 hcp-structure-analysis/
+
+.cmdstan/
+.lesshst
+cmdstan/
+yash-dissertation/

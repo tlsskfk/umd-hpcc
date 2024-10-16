@@ -1,4 +1,14 @@
 {
-  "t2w": {"datatype": "anat", "suffix": "T2w"},
-  "t1w": {"datatype": "anat", "suffix": "T1w"}
+  "t1w": {
+    "datatype": "anat",
+    "session": "6m"
+  },
+  "t2w": {
+    "datatype": "anat",
+    "session": "6m"
+  },
+  "flair": {
+    "datatype": "anat",
+    "session": "6m"
+  }
 }
