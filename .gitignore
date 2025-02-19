@@ -43,3 +43,7 @@ hcp-structure-analysis/
 .lesshst
 cmdstan/
 yash-dissertation/
+Hreg_Analysis/
+bids_misc_asmita/
+fmriprep_Hreg_Analysis/
+ntr_hreg/

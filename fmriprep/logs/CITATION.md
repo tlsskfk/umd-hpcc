@@ -52,8 +52,8 @@ Head-motion parameters with respect to the BOLD reference
 (transformation matrices, and six corresponding rotation and translation
 parameters) are estimated before any spatiotemporal filtering using
 `mcflirt` [FSL 5.0.9, @mcflirt].
-BOLD runs were slice-time corrected to 0.554s (0.5 of slice acquisition range
-0s-1.11s) using `3dTshift` from AFNI 20160207 [@afni, RRID:SCR_005927].
+BOLD runs were slice-time corrected to 0.565s (0.5 of slice acquisition range
+0s-1.13s) using `3dTshift` from AFNI 20160207 [@afni, RRID:SCR_005927].
 The BOLD time-series (including slice-timing correction when applied)
 were resampled onto their original, native space by applying
 a single, composite transform to correct for head-motion and
@@ -125,80 +125,8 @@ Head-motion parameters with respect to the BOLD reference
 (transformation matrices, and six corresponding rotation and translation
 parameters) are estimated before any spatiotemporal filtering using
 `mcflirt` [FSL 5.0.9, @mcflirt].
-BOLD runs were slice-time corrected to 0.552s (0.5 of slice acquisition range
-0s-1.1s) using `3dTshift` from AFNI 20160207 [@afni, RRID:SCR_005927].
-The BOLD time-series (including slice-timing correction when applied)
-were resampled onto their original, native space by applying
-the transforms to correct for head-motion.
-These resampled BOLD time-series will be referred to as *preprocessed
-BOLD in original space*, or just *preprocessed BOLD*.
-The BOLD time-series were resampled into standard space,
-generating a *preprocessed BOLD run in MNI152NLin2009cAsym space*.
-First, a reference volume and its skull-stripped version were generated
- using a custom
-methodology of *fMRIPrep*.
-Several confounding time-series were calculated based on the
-*preprocessed BOLD*: framewise displacement (FD), DVARS and
-three region-wise global signals.
-FD was computed using two formulations following Power (absolute sum of
-relative motions, @power_fd_dvars) and Jenkinson (relative root mean square
-displacement between affines, @mcflirt).
-FD and DVARS are calculated for each functional run, both using their
-implementations in *Nipype* [following the definitions by @power_fd_dvars].
-The three global signals are extracted within the CSF, the WM, and
-the whole-brain masks.
-Additionally, a set of physiological regressors were extracted to
-allow for component-based noise correction [*CompCor*, @compcor].
-Principal components are estimated after high-pass filtering the
-*preprocessed BOLD* time-series (using a discrete cosine filter with
-128s cut-off) for the two *CompCor* variants: temporal (tCompCor)
-and anatomical (aCompCor).
-tCompCor components are then calculated from the top 2% variable
-voxels within the brain mask.
-For aCompCor, three probabilistic masks (CSF, WM and combined CSF+WM)
-are generated in anatomical space.
-The implementation differs from that of Behzadi et al. in that instead
-of eroding the masks by 2 pixels on BOLD space, the aCompCor masks are
-subtracted a mask of pixels that likely contain a volume fraction of GM.
-This mask is obtained by dilating a GM mask extracted from the FreeSurfer's *aseg* segmentation, and it ensures components are not extracted
-from voxels containing a minimal fraction of GM.
-Finally, these masks are resampled into BOLD space and binarized by
-thresholding at 0.99 (as in the original implementation).
-Components are also calculated separately within the WM and CSF masks.
-For each CompCor decomposition, the *k* components with the largest singular
-values are retained, such that the retained components' time series are
-sufficient to explain 50 percent of variance across the nuisance mask (CSF,
-WM, combined, or temporal). The remaining components are dropped from
-consideration.
-The head-motion estimates calculated in the correction step were also
-placed within the corresponding confounds file.
-The confound time series derived from head motion estimates and global
-signals were expanded with the inclusion of temporal derivatives and
-quadratic terms for each [@confounds_satterthwaite_2013].
-Frames that exceeded a threshold of 0.5 mm FD or
-1.5 standardised DVARS were annotated as motion outliers.
-All resamplings can be performed with *a single interpolation
-step* by composing all the pertinent transformations (i.e. head-motion
-transform matrices, susceptibility distortion correction when available,
-and co-registrations to anatomical and output spaces).
-Gridded (volumetric) resamplings were performed using `antsApplyTransforms` (ANTs),
-configured with Lanczos interpolation to minimize the smoothing
-effects of other kernels [@lanczos].
-Non-gridded (surface) resamplings were performed using `mri_vol2surf`
-(FreeSurfer).
-First, a reference volume and its skull-stripped version were generated
- using a custom
-methodology of *fMRIPrep*.
-Susceptibility distortion correction (SDC) was omitted.
-The BOLD reference was then co-registered to the T1w reference using
-`bbregister` (FreeSurfer) which implements boundary-based registration [@bbr].
-Co-registration was configured with six degrees of freedom.
-Head-motion parameters with respect to the BOLD reference
-(transformation matrices, and six corresponding rotation and translation
-parameters) are estimated before any spatiotemporal filtering using
-`mcflirt` [FSL 5.0.9, @mcflirt].
-BOLD runs were slice-time corrected to 0.554s (0.5 of slice acquisition range
-0s-1.11s) using `3dTshift` from AFNI 20160207 [@afni, RRID:SCR_005927].
+BOLD runs were slice-time corrected to 0.565s (0.5 of slice acquisition range
+0s-1.13s) using `3dTshift` from AFNI 20160207 [@afni, RRID:SCR_005927].
 The BOLD time-series (including slice-timing correction when applied)
 were resampled onto their original, native space by applying
 the transforms to correct for head-motion.
@@ -274,8 +202,8 @@ Head-motion parameters with respect to the BOLD reference
 (transformation matrices, and six corresponding rotation and translation
 parameters) are estimated before any spatiotemporal filtering using
 `mcflirt` [FSL 5.0.9, @mcflirt].
-BOLD runs were slice-time corrected to 0.559s (0.5 of slice acquisition range
-0s-1.12s) using `3dTshift` from AFNI 20160207 [@afni, RRID:SCR_005927].
+BOLD runs were slice-time corrected to 0.564s (0.5 of slice acquisition range
+0s-1.13s) using `3dTshift` from AFNI 20160207 [@afni, RRID:SCR_005927].
 The BOLD time-series (including slice-timing correction when applied)
 were resampled onto their original, native space by applying
 a single, composite transform to correct for head-motion and
@@ -347,8 +275,8 @@ Head-motion parameters with respect to the BOLD reference
 (transformation matrices, and six corresponding rotation and translation
 parameters) are estimated before any spatiotemporal filtering using
 `mcflirt` [FSL 5.0.9, @mcflirt].
-BOLD runs were slice-time corrected to 0.559s (0.5 of slice acquisition range
-0s-1.12s) using `3dTshift` from AFNI 20160207 [@afni, RRID:SCR_005927].
+BOLD runs were slice-time corrected to 0.564s (0.5 of slice acquisition range
+0s-1.13s) using `3dTshift` from AFNI 20160207 [@afni, RRID:SCR_005927].
 The BOLD time-series (including slice-timing correction when applied)
 were resampled onto their original, native space by applying
 the transforms to correct for head-motion.
