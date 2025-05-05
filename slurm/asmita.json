@@ -1,0 +1,11 @@
+{
+  "t1w": {
+    "datatype": "anat"
+  },
+  "t2w": {
+    "datatype": "anat"
+  },
+  "flair": {
+    "datatype": "anat"
+  }
+}

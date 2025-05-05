@@ -12,4 +12,5 @@ do
     rm -rf "$SCRIPT_DIR/../fmriprep/sub-fad${arg}"
     rm -rf "$SCRIPT_DIR/../freesurfer/sub-fad${arg}"
     rm -f  "$SCRIPT_DIR/../fmriprep/log/fad${arg}.log"
+    #rm -rf "$SCRIPT_DIR/../bids/sub-fad${arg}"
 done

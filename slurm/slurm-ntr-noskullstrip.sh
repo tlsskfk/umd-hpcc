@@ -4,10 +4,14 @@ export HOME="/scratch/zt1/project/jpurcel8-prj/shared"
 export SOFTWARE_DIR="$HOME/fmriprep/software"
 export BIDS_DIR="$HOME/bids"
 export OUTPUT_DIR="$HOME/fmriprep/"
-export WORKING_DIR="/tmp/fmriprep"
+export WORKING_DIR="/tmp"
 export LOG_DIR="$HOME/fmriprep/log"
+
 export SINGULARITYENV_TEMPLATEFLOW_USE_PYBIDS=true
 export SLURM_EXPORT_ENV=ALL
+
+export DEST_URL="$USER@neurodev3.umd.edu"
+export DEST_PATH="/data/neurodev/NTR/fmriprep"
 
 listOfSubjects=""
 
@@ -20,8 +24,6 @@ echo "fMRIprep Batch Processing"
 echo "Subjects to process: $listOfSubjects"
 echo "---------------------------------------"
 
-rm $HOME/slurm/scp.sh
-
 run_singularity() {
   singularity run -B /scratch/zt1/project/jpurcel8-prj/shared/:/scratch/zt1/project/jpurcel8-prj/shared \
   --home /scratch/zt1/project/jpurcel8-prj/shared \
@@ -30,17 +32,18 @@ run_singularity() {
   bids ./ \
   participant \
   --participant-label "$1" \
-  --work-dir fmriprep/working \
+  --work-dir $WORKING_DIR/${USER} \
   --skull-strip-template MNI152NLin2009cAsym \
   --output-spaces MNI152NLin2009cAsym:res-1 \
-  --n_cpus 16 \
-  --nthreads 16 \
-  --omp-nthreads 8 \
-  --mem 64G \
+  --n_cpus 8 \
+  --nthreads 8 \
+  --omp-nthreads 4 \
+  --mem 8G \
   --skip_bids_validation \
   --skull-strip-t1w skip \
   --fs-license-file /tmp/$1/fmriprep/software/license.txt >> "$LOG_DIR/$1.log"
-
+  
+  echo "$(date '+%Y-%m-%d %H:%M:%S') - Completed Processing of subject $1" 
   echo "$(date '+%Y-%m-%d %H:%M:%S') - Completed Processing of subject $1" >> "$LOG_DIR/$1.log"
 }
 
@@ -49,9 +52,8 @@ for subject in "$@"; do
   command_string=$(cat <<EOF
 #!/bin/bash
 #SBATCH -n 1
-#SBATCH -t 1-0
-#SBATCH -c 16
-#SBATCH --mem-per-cpu=4096
+#SBATCH -t 7-0
+#SBATCH -c 8
 #SBATCH --oversubscribe
 
 export SLURM_EXPORT_ENV=ALL
@@ -66,7 +68,8 @@ cd $HOME
 
 mkdir -p /tmp/ntr$subject/fmriprep
 mkdir -p /tmp/ntr$subject/.cache
-mkdir -p $WORKING_DIR
+mkdir -p /tmp/fmriprep
+
 cp -r ./fmriprep/software /tmp/ntr$subject/fmriprep
 cp -r ./.cache /tmp/ntr$subject
 
@@ -74,12 +77,13 @@ echo "Running Fmriprep processing for ntr$subject..."
 $(declare -f run_singularity)
 run_singularity "ntr$subject"
 
-echo "scp ../fmriprep/sub-ntr$subject.html $USER@neurodev3.umd.edu:/data/neurodev/NTR/fmriprep/fmriprep" >> $HOME/slurm/${USER}-scp.sh
-echo "scp -r ../freesurfer/sub-ntr$subject $USER@neurodev3.umd.edu:/data/neurodev/NTR/fmriprep/freesurfer" >> $HOME/slurm/${USER}-scp.sh
-echo "scp -r ../fmriprep/sub-ntr$subject $USER@neurodev3.umd.edu:/data/neurodev/NTR/fmriprep/fmriprep" >> $HOME/slurm/${USER}-scp.sh
+echo "Done running subject ntr$subject" 
 
-echo "tail ../fmriprep/logs/sub-ntr$subject.log"
-
+echo "#-------------------------------" >> $HOME/slurm/${USER}-scp.sh
+echo "scp ../fmriprep/sub-ntr$subject.html $DEST_URL:$DEST_PATH/fmriprep" >> $HOME/slurm/${USER}-scp.sh
+echo "scp -r ../freesurfer/sub-ntr$subject $DEST_URL:$DEST_PATH/freesurfer" >> $HOME/slurm/${USER}-scp.sh
+echo "scp -r ../fmriprep/sub-ntr$subject $DEST_URL:$DEST_PATH/fmriprep" >> $HOME/slurm/${USER}-scp.sh
+echo "#-------------------------------" >> $HOME/slurm/${USER}-scp.sh
 EOF
 )
 
@@ -90,4 +94,4 @@ done
 sleep 2
 
 echo "Successfully Initiated Processing of Subjects: $listOfSubjects"
-
+echo "# Initiated batch: $@" >> $HOME/slurm/${USER}-scp.sh
